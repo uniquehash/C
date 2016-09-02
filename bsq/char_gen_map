@@ -1,0 +1,33 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    script_bitch.pl                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: csummers <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/08/31 17:36:17 by csummers          #+#    #+#              #
+#    Updated: 2016/08/31 17:42:45 by csummers         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+die "program x y density" unless (scalar(@ARGV) == 6);
+
+my ($x, $y, $density, $space, $obs, $fill) = @ARGV;
+
+print "$y$space$obs$fill\n";
+
+for (my $i = 0; $i < $y; $i++) {
+	for (my $j = 0; $j < $x; $j++) {
+		if (int(rand($y) * 2) < $density) {
+			print $obs;
+		}
+		else {
+			print $space;
+		}
+	}
+	print "\n";
+}
