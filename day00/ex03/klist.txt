@@ -1,0 +1,5 @@
+Credentials cache: API:21083
+        Principal: obelange@42.US.ORG
+
+  Issued                Expires               Principal
+Aug  8 20:48:56 2016  Aug  9 06:48:56 2016  krbtgt/42.US.ORG@42.US.ORG
