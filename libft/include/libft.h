@@ -90,4 +90,14 @@ int				ft_isnt32();
 int				ft_stric(char const *s, char const *c, size_t *index);
 char			*ft_strmcat(char const *s1, const char *s2);
 
+int				ft_1chr_nsym(char const *s, char const *c, char **s_str);
+intmax_t		ft_intmax_atoi(char const *str);
+char			*ft_fstrappend(char *s1, char c);
+void			ft_fstrinsert(char **printit, char *substr, size_t strt, size_t end);
+char			*ft_fstrmcat(char *s1, char const *s2);
+char			*ft_itoa_base(uintmax_t num, int base, int neg);
+int				ft_nchr_1sym(char const *s, char const **c, char **s_str);
+char const		*ft_shiftstr(char const *s1, char const *s2);
+int				ft_strchri(char const *s, char const c, size_t *index);
+
 #endif

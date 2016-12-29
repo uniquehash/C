@@ -12,7 +12,9 @@
 
 NAME = libft.a
 
-S_PATH = 
+S_PATH = src/
+B_PATH = build/
+H_PATH = include/
 
 FILES = ft_strlen ft_toupper ft_tolower ft_strclr ft_strcpy ft_strncpy\
 ft_strcat ft_strncat ft_strlcat ft_strchr ft_strrchr ft_strcmp ft_strncmp\
@@ -25,14 +27,18 @@ ft_strdup ft_strsub ft_strjoin ft_strtrim ft_strsplit
 
 FILES += ft_lstnew ft_lstdelone ft_lstdel ft_lstadd ft_lstiter ft_lstmap
 FILES += ft_stri_head ft_stri_tail ftsd ft_strdfree ft_isnt32
+
 # get_next_line
 FILES += ft_stric ft_strmcat 
 
-FILES += main
+# ft_printf
+FILES += ft_1chr_nsym ft_intmax_atoi ft_fstrappend ft_fstrinsert ft_fstrmcat \
+ft_itoa_base ft_nchr_1sym ft_shiftstr ft_strchri
 
-H_PATH = 
+RUN_FILES += $(FILES) main
 
-OBJ = $(addsuffix .o, $(FILES))
+OBJ = $(addprefix $(B_PATH), $(addsuffix .o, $(FILES)))
+ROBJ = $(addprefix $(B_PATH), $(addsuffix .o, $(RUN_FILES)))
 
 SRC = $(addprefix $(S_PATH), $(addsuffix .c, $(FILES)))
 
@@ -45,28 +51,31 @@ FLAGS = -Wall -Werror -Wextra
 
 all : $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): build $(OBJ)
 	ar rc $(NAME) $(OBJ)
 
-run: 
-	@gcc $(FLAGS) -o a.out $(OBJ)
+run: fclean build $(ROBJ)
+	@gcc $(FLAGS) -o a.out $(ROBJ) -I ./include && ./a.out
 
-$(OBJ) :  
-	@gcc -c $(SRC) $(HDR)
+# $(OBJ) :  build
+# 	@gcc -c $(SRC) -I ./include
 
-fsan : fclean $(OBJ)
-	@gcc $(FLAGS) -fsanitize=address -o a.out $(OBJ)
+fsan : fclean build $(ROBJ)
+	@gcc $(FLAGS) -fsanitize=address -o a.out $(ROBJ) -I ./include
+
+$(B_PATH)%.o: $(S_PATH)%.c
+	gcc -c $< -o $@ -I ./include
+
+build : 
+	mkdir build
 
 norm : 
 	norminette
 
-test : fclean $(NAME)
-	gcc $(FLAGS) -o bin $(OBJ) $(HDR) && ./bin && rm -f bin
-
-clean :
-	@rm -f $(OBJ) libft.h.gch
+clean :	
+	@rm -rf build
 
 fclean : clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) a.out
 
 re : fclean all

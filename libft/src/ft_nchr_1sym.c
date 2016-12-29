@@ -1,24 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_printf_nchr_1sym.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 14:47:57 by obelange          #+#    #+#             */
-/*   Updated: 2016/09/30 14:47:57 by obelange         ###   ########.fr       */
+/*   Created: 2016/11/15 01:00:13 by obelange          #+#    #+#             */
+/*   Updated: 2016/11/15 01:00:15 by obelange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dst, char const *src)
+int	ft_nchr_1sym(char const *s, char const **c, char **s_str)
 {
-	int i;
+	size_t		i;
+	char const	*d;
 
-	i = -1;
-	while (src[++i])
-		dst[i] = src[i];
-	dst[i] = '\0';
-	return (dst);
+	if (s && c && *c)
+	{
+		while (*s)
+		{
+			i = 0;
+			while (c[i])
+			{
+				d = ft_shiftstr(c[i++], *s_str);
+				if (ft_1chr_nsym(s, d, s_str) == 1)
+				{
+					s++;
+					break ;
+				}
+			}
+			s++;
+		}
+		if (*s_str)
+			return (1);
+		else
+			return (0);
+	}
+	return (-1);
 }

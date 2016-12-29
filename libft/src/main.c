@@ -68,6 +68,15 @@ void ft_strsub_test();
 void ft_strjoin_test();
 void ft_strtrim_test();
 void ft_strsplit_test();
+void ft_1chr_nsym_test();
+void ft_intmax_atoi_test();
+void ft_fstrappend_test();
+void ft_fstrinsert_test();
+void ft_fstrmcat_test();
+void ft_itoa_base_test();
+void ft_nchr_1sym_test();
+void ft_shiftstr_test();
+void ft_strchri_test();
 
 int		main(void)
 {
@@ -183,8 +192,8 @@ int		main(void)
 	// ft_strjoin_test();
 	// printf("\n45: ft_strtrim_test:\n");
 	// ft_strtrim_test();
-	printf("\n46: ft_strsplit_test:\n");
-	ft_strsplit_test();
+	// printf("\n46: ft_strsplit_test:\n");
+	// ft_strsplit_test();
 
 
 	/* function pointer */
@@ -198,8 +207,124 @@ int		main(void)
 	// printf("\n45: ft_strmapi_test:\n");
 	// ft_strmapi_test();
 
+
+	/* printf */
+	// printf("\nprintf functions: 10\n");
+	// printf("\n46: ft_1chr_nsym_test:\n");
+	// ft_1chr_nsym_test();
+	// printf("\n47: ft_intmax_atoi_test:\n");
+	// ft_intmax_atoi_test();
+	// printf("\n48: ft_fstrappend_test:\n");
+	// ft_fstrappend_test();
+	// printf("\n49: ft_fstrinsert_test:\n");
+	// ft_fstrinsert_test();
+	// printf("\n50: ft_fstrmcat_test:\n");
+	// ft_fstrmcat_test();
+	// printf("\n51: ft_itoa_base_test:\n");
+	// ft_itoa_base_test();
+	// printf("\n52: (broken) ft_nchr_1sym_test:\n");
+	// ft_nchr_1sym_test();
+	// printf("\n53: ft_shiftstr_test:\n");
+	// ft_shiftstr_test();
+	// printf("\n54: ft_strchri_test:\n");
+	// ft_strchri_test();
+
+
 	return(0);
 }
+
+
+
+
+
+
+
+void ft_strchri_test(){
+	char *str = "abcderfsgj";
+	char c = 'f';
+	size_t i;
+
+	i = 0;
+
+	printf("result: %d, i: %d\n", ft_strchri(str, c, &i), i);
+
+}
+
+
+
+void ft_shiftstr_test(){
+	char *str = "abduhf";
+	char *abd = "abdhg";
+
+	printf("result %s\n", ft_shiftstr(str, abd));
+
+}
+
+void ft_nchr_1sym_test()
+{
+	// brokem not worth it for now
+	char *str = "0123456789";
+	char **c = {"23", "ab", 0};
+	char *s_str = ft_strdup("e");
+
+	
+
+	printf("str: %s\n", str);
+	ft_nchr_1sym(str, c, &s_str);
+	printf("result: %s\n", s_str);
+}
+
+
+void ft_itoa_base_test()
+{
+	printf("result: %s\n", ft_itoa_base(599999, 10, 0));
+}
+
+
+void ft_fstrmcat_test()
+{
+	char *str = ft_strdup("012345");
+	printf("result: %s\n", ft_fstrmcat(str, "abcdef"));
+}
+
+
+void ft_fstrinsert_test()
+{
+	char *str = ft_strdup("0123456789");
+	ft_fstrinsert(&str, "abc", 5, 7);
+
+	printf("result: %s\n", str);
+}
+
+
+void ft_fstrappend_test()
+{
+	char *str = ft_strdup("aaaaa");
+	printf("result: %s\n", ft_fstrappend(str, 'b'));
+}
+
+
+void ft_intmax_atoi_test(){
+	char *str = "49999";
+	
+	printf("atoi: %d\n", ft_intmax_atoi(str));
+
+
+}
+
+
+void ft_1chr_nsym_test(){
+
+	char *str;
+	char const *s = "help yo dunce";
+	char const *c = "e";
+
+	printf("result: %d\n", ft_1chr_nsym(s, c, &str));
+	printf("c: %s\n", c);
+	printf("s: %s\n", s);
+	printf("str: %s\n", str);
+}
+
 
 void strlen_test(){
 	char const	*sstring1 = "123456789";

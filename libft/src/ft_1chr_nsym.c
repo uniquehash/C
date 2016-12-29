@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_printf_1chr_nsym.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 14:47:57 by obelange          #+#    #+#             */
-/*   Updated: 2016/09/30 14:47:57 by obelange         ###   ########.fr       */
+/*   Created: 2016/11/15 01:00:13 by obelange          #+#    #+#             */
+/*   Updated: 2016/11/15 01:00:15 by obelange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int	ft_1chr_nsym(char const *s, char const *c, char **s_str)
 {
-	int i;
+	size_t	i;
+	size_t	j;
+	int		flag;
 
-	i = 0;
-	if (dst && src)
+	flag = -1;
+	if (s && c)
 	{
-		while (src[i] && i < len)
+		if (s_str)
 		{
-			dst[i] = src[i];
-			i++;
-		}
-		while (i < len)
-		{
-			dst[i] = '\0';
-			i++;
+			i = 0;
+			flag = 0;
+			while (s[i])
+			{
+				if ((ft_strchri(c, s[i++], &j)) == 1)
+				{
+					*s_str = ft_fstrappend(*s_str, c[j]);
+					flag = 1;
+				}
+				else
+					return (flag);
+			}
+			return (flag);
 		}
 	}
-	return (dst);
+	return (flag);
 }
